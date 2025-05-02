@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
 
 export default function HomeScreen({ navigation }) {
   const [km, setKm] = useState('');
@@ -13,10 +13,10 @@ export default function HomeScreen({ navigation }) {
         const media = kmValue / litrosValue;
         navigation.navigate('Result', { media });
       } else {
-        alert('Por favor, Insira valores válidos.');
+        alert('Por favor, insira valores válidos.');
       }
     } else {
-      alert('Por favor, Preencha todos os campos.');
+      alert('Por favor, preencha todos os campos.');
     }
   };
 
@@ -38,7 +38,9 @@ export default function HomeScreen({ navigation }) {
         onChangeText={setLitros}
         placeholder="Digite a quantidade de litros"
       />
-      <Button title="Calcular Consumo" onPress={handleCalcular} />
+      <TouchableOpacity style={styles.button} onPress={handleCalcular}>
+        <Text style={styles.label}>Calcular consumo</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -50,13 +52,22 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   label: {
-    fontSize: 16,
-    marginVertical: 8,
+    fontSize: 17,
+    marginVertical: 5,
   },
   input: {
+    marginVertical: 5,
     borderWidth: 1,
     borderColor: '#ccc',
     padding: 10,
     borderRadius: 5,
   },
+  button: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'pink',
+    marginVertical: 15,
+    paddingVertical: 4,
+    borderRadius: 6,
+  }
 });
